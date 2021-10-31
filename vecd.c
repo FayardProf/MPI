@@ -24,7 +24,7 @@ void vecd_delete(vecd *v) {
     free(v);
 }
 
-int vecd_empty(vecd *v) {
+bool vecd_empty(vecd *v) {
     return v->size == 0;
 }
 
@@ -70,7 +70,15 @@ void vecd_set(vecd *v, int i, double x) {
     v->data[i] = x;
 }
 
-void vecd_append(vecd *v, double x) {
+void vecd_swap(vecd *v, int i, int j) {
+    assert(i >= 0 && i < v->size);
+    assert(j >= 0 && j < v->size);
+    double x = v->data[i];
+		v->data[i] = v->data[j];
+		v->data[j] = x;
+}
+
+void vecd_push_back(vecd *v, double x) {
     int n = v->size;
 		int r = v->capacity;
     if (r == n) {
@@ -81,7 +89,7 @@ void vecd_append(vecd *v, double x) {
     v->size++;
 }
 
-double vecd_pop(vecd *v) {
+double vecd_pop_back(vecd *v) {
     assert(v->size > 0);
     v->size--;
     int i = v->size;
