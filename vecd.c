@@ -95,3 +95,7 @@ double vecd_pop_back(vecd *v) {
     int i = v->size;
     return v->data[i];
 }
+
+double *vecd_data(vecd *v) {
+    return v->data;
+}

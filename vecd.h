@@ -17,5 +17,6 @@ void vecd_set(vecd *v, int i, double x);
 void vecd_swap(vecd *v, int i, int j);
 void vecd_push_back(vecd *v, double x);
 double vecd_pop_back(vecd *v);
+double *vecd_data(vecd *v);
 
 #endif //MPI_VECD_H
