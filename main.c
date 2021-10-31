@@ -13,8 +13,8 @@ int main() {
     printf("Size: %d\n", vecd_size(v));
     vecd_delete(v);
 
-		listd *lst = listd_new();
-		for (int i = 0; i < n; i++) {
+    listd *lst = listd_new();
+    for (int i = 0; i < n; i++) {
         listd_push_back(lst, 1.0);
     }	
 	  printf("Size: %d\n", listd_size(lst));
