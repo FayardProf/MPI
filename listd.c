@@ -11,7 +11,7 @@ struct Nodeld {
 
 struct Listd {
     nodeld *front;
-		nodeld *back;
+    nodeld *back;
 };
 
 listd *listd_new() {
@@ -30,7 +30,7 @@ int listd_size(listd *lst) {
     nodeld *node = lst->front;
     while (node != NULL) {
         node = node->next;
-				n++;
+        n++;
     }
     return n;
 }
@@ -50,11 +50,11 @@ void listd_push_front(listd *lst, double x) {
     node->value = x;
     node->previous = NULL;
     node->next = lst->front;
-		if (listd_empty(lst)) {
+    if (listd_empty(lst)) {
         lst->back = node;
-		} else {
+    } else {
         lst->front->previous = node;
-		}
+    }
     lst->front = node;
 }
 
@@ -63,12 +63,12 @@ void listd_push_back(listd *lst, double x) {
     node->value = x;
     node->previous = lst->back;
     node->next = NULL;
-		if (listd_empty(lst)) {
+    if (listd_empty(lst)) {
         lst->front = node;
-		} else {
+    } else {
         lst->back->next = node;
-		}
-		lst->back = node;
+    }
+    lst->back = node;
 }
 
 double listd_front(listd *lst) {

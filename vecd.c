@@ -34,15 +34,15 @@ int vecd_size(vecd *v) {
 
 void _vecd_increase_capacity(vecd* v, int r) {
     assert(v->capacity < r);
-		double *new_data = malloc(r * sizeof(double));
-		if (v->data != NULL) {
-			for (int i = 0; i < v->size; i++) {
-				new_data[i] = v->data[i];
-			}
-			free(v->data);
-		}
-		v->data = new_data;
-		v->capacity = r;
+    double *new_data = malloc(r * sizeof(double));
+    if (v->data != NULL) {
+        for (int i = 0; i < v->size; i++) {
+            new_data[i] = v->data[i];
+        }
+        free(v->data);
+    }
+    v->data = new_data;
+    v->capacity = r;
 }
 
 void vecd_resize(vecd* v, int n) {
@@ -74,18 +74,18 @@ void vecd_swap(vecd *v, int i, int j) {
     assert(i >= 0 && i < v->size);
     assert(j >= 0 && j < v->size);
     double x = v->data[i];
-		v->data[i] = v->data[j];
-		v->data[j] = x;
+    v->data[i] = v->data[j];
+    v->data[j] = x;
 }
 
 void vecd_push_back(vecd *v, double x) {
     int n = v->size;
-		int r = v->capacity;
+    int r = v->capacity;
     if (r == n) {
         int new_r = (n == 0) ? 1 : 2 * n;
-				_vecd_increase_capacity(v, new_r);
+        _vecd_increase_capacity(v, new_r);
     }
-		v->data[n] = x;
+    v->data[n] = x;
     v->size++;
 }
 
