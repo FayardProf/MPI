@@ -19,8 +19,12 @@ double listd_pop_front(listd *lst);
 double listd_pop_back(listd *lst);
 noded *listd_begin(listd *lst);
 noded *listd_end(listd *lst);
-noded *listd_next(noded *node);
-double listd_value(noded *node);
-void listd_insert(listd* lst, noded* node, double x);
+noded *listd_rbegin(listd *lst);
+noded *listd_rend(listd *lst);
+noded *listd_next(noded *no);
+noded *listd_previous(noded *no);
+double listd_value(noded *no);
+void listd_insert(listd *lst, noded *no, double x);
+void listd_erase(listd *lst, noded *no);
 
 #endif //MPI_LISTD_H

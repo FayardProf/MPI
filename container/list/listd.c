@@ -18,7 +18,7 @@ listd *listd_new() {
     listd *lst = malloc(sizeof(listd));
     lst->front = NULL;
     lst->back = NULL;
-    return lst;
+    return lst;    
 }
 
 void listd_delete(listd *lst) {
@@ -111,32 +111,64 @@ noded *listd_end(listd *lst) {
     return NULL;
 }
 
-noded *listd_next(noded *node) {
-    return node->next;
+noded *listd_rbegin(listd *lst) {
+    return lst->back;
 }
 
-double listd_value(noded *node) {
-    return node->value;
+noded *listd_rend(listd *lst) {
+    return NULL;
 }
 
-void listd_insert(listd* lst, noded* node, double x) {
-    noded *new_node = malloc(sizeof(noded));
-    new_node->value = x;
-    new_node->next = node;
-    if (node != NULL) {
-        new_node->previous = node->previous;
-        if (node->previous != NULL) {
-            node->previous->next = new_node;
+noded *listd_next(noded *no) {
+	assert(no != NULL);
+    return no->next;
+}
+
+noded *listd_previous(noded *no) {
+    assert(no != NULL);
+    return no->previous;
+}
+
+double listd_value(noded *no) {
+    assert(no != NULL);
+    return no->value;
+}
+
+void listd_insert(listd* lst, noded* no, double x) {
+    noded *new_no = malloc(sizeof(noded));
+    new_no->value = x;
+    new_no->next = no;
+    if (no != NULL) {
+        new_no->previous = no->previous;
+        if (no->previous != NULL) {
+            no->previous->next = new_no;
         }
-        node->previous = new_node;
+        no->previous = new_no;
     } else {
-        new_node->previous = lst->back;
+        new_no->previous = lst->back;
         if (lst->back != NULL) {
-            lst->back->next = new_node; 
+            lst->back->next = new_no; 
         }
-        lst->back = new_node;
+        lst->back = new_no;
     }
-    if (new_node->previous == NULL) {
-        lst->front = new_node;
+    if (new_no->previous == NULL) {
+        lst->front = new_no;
+    }
+}
+
+void listd_erase(listd *lst, noded *no) {
+    assert(no != NULL);
+    noded *previous_no = no->previous;
+    noded *next_no = no->next;
+    free(no);
+    if (previous_no != NULL) {
+        previous_no->next = next_no;
+    } else {
+        lst->front = next_no;
+    }
+    if (next_no != NULL) {
+        next_no->previous = previous_no;
+    } else {
+        lst->back = previous_no;
     }
 }
